@@ -9,7 +9,7 @@
 
 <link rel="icon" type="image/png" href="../avatar.png">
 
-<meta name="version" content="1.0.0.2">
+<meta name="version" content="1.0.0.10">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -36,7 +36,8 @@ body{
     overflow-y:auto;
 
     display:flex;
-    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
 
     font-family:'Poppins',sans-serif;
 
@@ -46,7 +47,7 @@ body{
 
     position:relative;
 
-    padding:0;
+    padding:40px 25px;
 }
 
 /* BACKGROUND */
@@ -76,7 +77,7 @@ body{
 
 /* GRID */
 
-.grid-bg{
+.grid{
 
     position:fixed;
     inset:0;
@@ -96,59 +97,83 @@ body{
     z-index:-9;
 }
 
-/* HEADER */
+/* FLOATING ICONS */
 
-header{
+.float-icon{
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    position:fixed;
 
-    padding:18px 28px;
+    color:rgba(0,170,255,0.08);
 
-    background:rgba(3,7,18,0.7);
+    z-index:-2;
 
-    backdrop-filter:blur(10px);
-
-    border-bottom:1px solid rgba(0,170,255,0.1);
-
-    position:relative;
-
-    z-index:20;
+    animation:float 8s ease-in-out infinite;
 }
 
-.header-title{
-
-    display:flex;
-    flex-direction:column;
-    gap:4px;
+.float-icon i{
+    filter:drop-shadow(0 0 15px rgba(0,170,255,0.2));
 }
 
-.header-title h1{
-
-    font-family:'Orbitron',sans-serif;
-
-    font-size:1.3rem;
-
-    letter-spacing:3px;
-
-    color:#00aaff;
-
-    text-shadow:
-    0 0 10px rgba(0,170,255,0.6),
-    0 0 20px rgba(0,170,255,0.3);
+.icon1{
+    top:8%;
+    left:8%;
+    font-size:4rem;
+    animation-duration:10s;
 }
 
-.header-title .version{
-
-    font-size:0.7rem;
-
-    color:rgba(0,170,255,0.6);
-
-    letter-spacing:1px;
+.icon2{
+    top:18%;
+    right:12%;
+    font-size:5rem;
+    animation-duration:13s;
 }
+
+.icon3{
+    bottom:14%;
+    left:10%;
+    font-size:4.5rem;
+    animation-duration:11s;
+}
+
+.icon4{
+    bottom:10%;
+    right:9%;
+    font-size:5rem;
+    animation-duration:14s;
+}
+
+.icon5{
+    top:50%;
+    left:45%;
+    font-size:4rem;
+    animation-duration:12s;
+}
+
+/* FLOAT */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-20px) rotate(8deg);
+    }
+
+    100%{
+        transform:translateY(0px) rotate(0deg);
+    }
+}
+
+/* HOME BUTTON */
 
 .home-btn{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
 
     display:inline-flex;
     align-items:center;
@@ -156,7 +181,7 @@ header{
 
     gap:8px;
 
-    padding:10px 20px;
+    padding:10px 18px;
 
     text-decoration:none;
 
@@ -170,21 +195,23 @@ header{
 
     font-family:'Orbitron',sans-serif;
 
-    font-size:0.75rem;
+    font-size:0.72rem;
 
-    letter-spacing:1.5px;
+    letter-spacing:2px;
 
     transition:0.35s ease;
+
+    z-index:50;
 }
 
 .home-btn:hover{
 
-    transform:translateY(-3px);
+    transform:translateY(-4px) scale(1.03);
 
     background:rgba(0,170,255,0.14);
 
     box-shadow:
-    0 0 20px rgba(0,170,255,0.28);
+    0 0 20px rgba(0,170,255,0.25);
 }
 
 .home-btn i{
@@ -192,67 +219,27 @@ header{
     color:#00aaff;
 }
 
-/* MAIN CONTAINER */
+/* MAIN */
 
 .container{
 
-    flex:1;
-
     width:100%;
+    max-width:1200px;
 
-    max-width:1400px;
-
-    margin:0 auto;
-
-    padding:40px 28px;
+    text-align:center;
 
     position:relative;
 
     z-index:5;
-}
-
-/* TITLE SECTION */
-
-.section-header{
-
-    text-align:center;
-
-    margin-bottom:50px;
 
     animation:fadeIn 1.2s ease;
-}
-
-.section-header h2{
-
-    font-family:'Orbitron',sans-serif;
-
-    font-size:2.5rem;
-
-    letter-spacing:5px;
-
-    color:#00aaff;
-
-    text-shadow:
-    0 0 15px rgba(0,170,255,0.7),
-    0 0 30px rgba(0,170,255,0.3);
-
-    margin-bottom:12px;
-}
-
-.section-header p{
-
-    color:rgba(255,255,255,0.8);
-
-    font-size:0.95rem;
-
-    letter-spacing:1px;
 }
 
 @keyframes fadeIn{
 
     from{
         opacity:0;
-        transform:translateY(30px);
+        transform:translateY(40px);
     }
 
     to{
@@ -261,32 +248,76 @@ header{
     }
 }
 
+/* TITLE */
+
+.title-section{
+
+    margin-bottom:50px;
+}
+
+.title-section h1{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:3rem;
+
+    letter-spacing:6px;
+
+    color:#00aaff;
+
+    text-shadow:
+    0 0 10px rgba(0,170,255,0.9),
+    0 0 25px rgba(0,170,255,0.5);
+
+    transition:0.4s ease;
+
+    margin-bottom:8px;
+}
+
+.title-section h1:hover{
+
+    transform:translateY(-4px);
+
+    text-shadow:
+    0 0 18px rgba(0,170,255,1),
+    0 0 40px rgba(0,170,255,0.6);
+}
+
+.title-section p{
+
+    color:rgba(255,255,255,0.8);
+
+    font-size:0.95rem;
+
+    letter-spacing:1px;
+}
+
 /* SHORTS GRID */
 
 .shorts-grid{
 
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-    gap:28px;
+    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    gap:24px;
 
     animation:fadeIn 1.2s ease 0.2s both;
 }
 
 .short-card{
 
-    background:rgba(18,26,46,0.6);
+    background:rgba(18,26,46,0.4);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(8px);
 
-    border:1px solid rgba(0,170,255,0.1);
+    border:1px solid rgba(0,170,255,0.12);
 
-    border-radius:16px;
+    border-radius:14px;
 
     overflow:hidden;
 
     box-shadow:
-    0 8px 32px rgba(0,0,0,0.3),
-    0 0 20px rgba(0,170,255,0.05);
+    0 0 20px rgba(0,0,0,0.3),
+    0 0 15px rgba(0,170,255,0.08);
 
     transition:0.45s ease;
 
@@ -295,13 +326,15 @@ header{
 
 .short-card:hover{
 
-    transform:translateY(-8px) scale(1.02);
+    transform:translateY(-6px) scale(1.02);
 
     border-color:rgba(0,170,255,0.25);
 
+    background:rgba(18,26,46,0.6);
+
     box-shadow:
-    0 12px 40px rgba(0,0,0,0.5),
-    0 0 30px rgba(0,170,255,0.15);
+    0 8px 32px rgba(0,0,0,0.4),
+    0 0 25px rgba(0,170,255,0.15);
 }
 
 .short-wrapper{
@@ -332,44 +365,39 @@ header{
 
 .short-meta{
 
-    padding:18px;
+    padding:12px;
+
+    background:rgba(3,7,18,0.5);
+
+    border-top:1px solid rgba(0,170,255,0.08);
 }
 
 .short-meta h3{
 
-    font-size:0.95rem;
+    font-size:0.85rem;
 
-    color:rgba(255,255,255,0.95);
+    color:rgba(255,255,255,0.9);
 
-    line-height:1.5;
+    line-height:1.4;
 
     font-weight:500;
 
-    margin-bottom:8px;
-
     word-break:break-word;
+
+    text-align:left;
 }
 
-.short-meta .date{
+/* LOADING */
 
-    font-size:0.75rem;
-
-    color:rgba(0,170,255,0.7);
-
-    letter-spacing:0.5px;
-}
-
-/* LOADING STATE */
-
-.loading-message{
+.loading{
 
     text-align:center;
 
-    padding:80px 20px;
+    padding:60px 20px;
 
     color:rgba(0,170,255,0.8);
 
-    font-size:1.1rem;
+    font-size:1rem;
 
     letter-spacing:2px;
 }
@@ -378,8 +406,8 @@ header{
 
     display:inline-block;
 
-    width:40px;
-    height:40px;
+    width:35px;
+    height:35px;
 
     border:3px solid rgba(0,170,255,0.2);
     border-top-color:#00aaff;
@@ -388,7 +416,7 @@ header{
 
     animation:spin 0.8s linear infinite;
 
-    margin-bottom:20px;
+    margin-bottom:16px;
 }
 
 @keyframes spin{
@@ -398,68 +426,41 @@ header{
     }
 }
 
-/* ERROR STATE */
+/* VERSION */
 
-.error-message{
+.version{
 
-    text-align:center;
+    position:fixed;
 
-    padding:60px 20px;
+    left:20px;
+    bottom:16px;
 
-    color:rgba(255,150,100,0.9);
+    color:rgba(0,170,255,0.72);
 
-    font-size:1rem;
+    font-size:0.7rem;
 
-    letter-spacing:1px;
+    font-family:'Orbitron',sans-serif;
 
-    background:rgba(255,0,0,0.05);
+    letter-spacing:2px;
 
-    border:1px solid rgba(255,100,100,0.2);
-
-    border-radius:12px;
-
-    margin:40px auto;
-
-    max-width:500px;
+    z-index:50;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width:768px){
 
-    header{
-        padding:14px 16px;
+    body{
+        padding:50px 18px;
     }
 
-    .header-title h1{
-        font-size:1rem;
-        letter-spacing:2px;
-    }
-
-    .container{
-        padding:24px 16px;
-    }
-
-    .section-header h2{
-        font-size:1.8rem;
-        letter-spacing:3px;
+    .title-section h1{
+        font-size:2rem;
     }
 
     .shorts-grid{
-        grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
         gap:16px;
-    }
-
-    .short-card{
-        border-radius:12px;
-    }
-
-    .short-meta{
-        padding:12px;
-    }
-
-    .short-meta h3{
-        font-size:0.85rem;
     }
 
 }
@@ -471,39 +472,63 @@ header{
 <body>
 
 <div class="bg"></div>
-<div class="grid-bg"></div>
+<div class="grid"></div>
 
-<header>
-    <div class="header-title">
-        <h1>🔥 LATEST SHORTS</h1>
-        <div class="version">v1.0.0.2</div>
-    </div>
-    <a class="home-btn" href="https://el-razy-yt.github.io/">
-        <i class="fa-solid fa-house"></i>
-        HOME
-    </a>
-</header>
+<!-- FLOATING ICONS -->
+
+<div class="float-icon icon1">
+    <i class="fa-brands fa-discord"></i>
+</div>
+
+<div class="float-icon icon2">
+    <i class="fa-brands fa-youtube"></i>
+</div>
+
+<div class="float-icon icon3">
+    <i class="fa-brands fa-spotify"></i>
+</div>
+
+<div class="float-icon icon4">
+    <i class="fa-brands fa-pinterest"></i>
+</div>
+
+<div class="float-icon icon5">
+    <i class="fa-brands fa-roblox"></i>
+</div>
+
+<!-- HOME BUTTON -->
+
+<a class="home-btn" href="https://el-razy-yt.github.io/">
+    <i class="fa-solid fa-house"></i>
+    HOME
+</a>
+
+<!-- MAIN -->
 
 <div class="container">
 
-    <div class="section-header">
-        <h2>ElRazy_YT</h2>
+    <div class="title-section">
+        <h1>🔥 LATEST SHORTS</h1>
         <p>Watch My Latest YouTube Shorts</p>
     </div>
 
     <div id="grid" class="shorts-grid">
-        <div class="loading-message">
+        <div class="loading">
             <div class="loading-spinner"></div>
-            <div>Loading your shorts...</div>
+            <div>Loading shorts...</div>
         </div>
     </div>
 
 </div>
 
+<div class="version">
+    v1.0.0.10
+</div>
+
 <script>
 
 const FEED = encodeURIComponent(
-    "https://www.youtube.com/feeds/videos.xml?user=ElRazy_YT"
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCU7ND2A5LJrm0g4tAMTXYAQ"
 );
 
 const URL = "https://api.allorigins.win/raw?url=" + FEED;
@@ -526,29 +551,21 @@ async function loadShorts() {
         entries.forEach(entry => {
             const title = entry.querySelector("title").textContent;
             const videoId = entry.querySelector("yt\\:videoId").textContent;
-            const published = entry.querySelector("published").textContent;
 
             if (count < 12) {
                 const card = document.createElement("div");
                 card.className = "short-card";
 
-                const date = new Date(published).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                });
-
                 card.innerHTML = `
                     <div class="short-wrapper">
                         <iframe
-                            src="https://www.youtube.com/embed/${videoId}?controls=1"
+                            src="https://www.youtube.com/embed/${videoId}?controls=0"
                             allowfullscreen
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                         </iframe>
                     </div>
                     <div class="short-meta">
                         <h3>${title}</h3>
-                        <div class="date">${date}</div>
                     </div>
                 `;
 
@@ -558,20 +575,20 @@ async function loadShorts() {
         });
 
         if (count === 0) {
-            grid.innerHTML = `<div class="error-message">No shorts found. Please check back later!</div>`;
+            grid.innerHTML = `<div class="loading">No shorts found.</div>`;
         }
 
     } catch (err) {
         console.error(err);
         document.getElementById("grid").innerHTML =
-            `<div class="error-message">
-                <i class="fa-solid fa-exclamation-circle"></i>
-                <div>Failed to load shorts. Please try again later.</div>
-            </div>`;
+            `<div class="loading">Failed to load shorts. Please try again later.</div>`;
     }
 }
 
 loadShorts();
+
+// Auto-refresh every 30 minutes
+setInterval(loadShorts, 30 * 60 * 1000);
 
 </script>
 
