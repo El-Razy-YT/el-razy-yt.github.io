@@ -9,7 +9,7 @@
 
 <link rel="icon" type="image/png" href="../avatar.png">
 
-<meta name="version" content="1.0.0.7">
+<meta name="version" content="1.0.0.8">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
 
@@ -127,6 +127,50 @@ body{
         transform:rotate(360deg);
     }
 
+}
+
+/* HOME BUTTON */
+
+.home-btn{
+
+    position:fixed;
+
+    top:18px;
+    left:18px;
+
+    padding:10px 18px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:rgba(0,170,255,0.08);
+
+    border:1px solid rgba(0,170,255,0.18);
+
+    border-radius:12px;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:0.75rem;
+
+    letter-spacing:2px;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.35s ease;
+
+    z-index:50;
+}
+
+.home-btn:hover{
+
+    transform:translateY(-4px) scale(1.03);
+
+    background:rgba(0,170,255,0.14);
+
+    box-shadow:
+    0 0 20px rgba(0,170,255,0.25);
 }
 
 /* MAIN */
@@ -393,6 +437,10 @@ body{
 
 <body>
 
+<a class="home-btn" href="/">
+    HOME
+</a>
+
 <div class="bg"></div>
 <div class="grid"></div>
 
@@ -467,7 +515,7 @@ body{
 </div>
 
 <div class="version-tag">
-    v1.0.0.7
+    v1.0.0.8
 </div>
 
 </body>
