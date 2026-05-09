@@ -3,24 +3,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ElRazy | Shorts</title>
+<title>ElRazy | Videos</title>
 
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b0f1a;
+    background: radial-gradient(circle at top, #1a1f35, #0b0f1a);
     color: white;
   }
 
+  /* HEADER */
   header {
-    padding: 18px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
     background: #11182a;
-    font-size: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+
+  .title {
+    font-size: 18px;
     font-weight: bold;
   }
 
+  .version {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .home-btn {
+    background: #2b6fff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .home-btn:hover {
+    background: #1f55cc;
+  }
+
+  /* GRID */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -28,31 +54,29 @@
     padding: 20px;
   }
 
-  /* Shorts-style vertical frame */
-  .short {
-    position: relative;
-    width: 100%;
-    padding-top: 177.77%; /* 9:16 ratio */
-    background: #111;
+  .card {
+    background: #121a2e;
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0,0,0,0.5);
   }
 
-  .short iframe {
+  .video {
+    position: relative;
+    padding-top: 177.77%; /* 9:16 */
+  }
+
+  .video iframe {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border: none;
   }
 
-  .title {
-    font-size: 12px;
+  .meta {
     padding: 8px;
+    font-size: 12px;
     color: #bbb;
-    text-align: center;
   }
 
   .loading {
@@ -60,37 +84,43 @@
     padding: 40px;
     color: #aaa;
   }
-
-  .note {
-    text-align: center;
-    font-size: 12px;
-    color: #777;
-    padding-bottom: 10px;
-  }
 </style>
 </head>
 
 <body>
 
-<header>🔥 Latest Shorts - ElRazy_YT</header>
-<div class="note">Auto-updating from YouTube channel</div>
+<header>
+  <div>
+    <div class="title">🔥 Latest Shorts - ElRazy_YT</div>
+    <div class="version">v1.0.0.1</div>
+  </div>
+
+  <a class="home-btn" href="https://el-razy-yt.github.io/">🏠 Home</a>
+</header>
 
 <div id="grid" class="grid">
-  <div class="loading">Loading Shorts...</div>
+  <div class="loading">Loading videos...</div>
 </div>
 
 <script>
-const FEED_URL = "https://www.youtube.com/feeds/videos.xml?user=ElRazy_YT";
 
-async function loadShorts() {
+const FEED = encodeURIComponent(
+  "https://www.youtube.com/feeds/videos.xml?user=ElRazy_YT"
+);
+
+// CORS FIX using proxy
+const URL = "https://api.allorigins.win/raw?url=" + FEED;
+
+async function loadVideos() {
   try {
-    const res = await fetch(FEED_URL);
+    const res = await fetch(URL);
     const text = await res.text();
 
     const parser = new DOMParser();
     const xml = parser.parseFromString(text, "text/xml");
 
     const entries = xml.querySelectorAll("entry");
+
     const grid = document.getElementById("grid");
     grid.innerHTML = "";
 
@@ -100,26 +130,24 @@ async function loadShorts() {
       const title = entry.querySelector("title").textContent;
       const videoId = entry.querySelector("yt\\:videoId").textContent;
 
-      // OPTIONAL filter: show only Shorts if tagged
-      const isShort = title.toLowerCase().includes("#shorts");
+      // Show latest videos (not relying only on #shorts)
+      if (count < 12) {
 
-      // If no Shorts found yet, fallback to all videos
-      const allow = isShort || count < 10;
+        const card = document.createElement("div");
 
-      if (allow && count < 12) {
-        const div = document.createElement("div");
-
-        div.innerHTML = `
-          <div class="short">
-            <iframe 
-              src="https://www.youtube.com/embed/${videoId}" 
-              allowfullscreen>
-            </iframe>
+        card.innerHTML = `
+          <div class="card">
+            <div class="video">
+              <iframe 
+                src="https://www.youtube.com/embed/${videoId}" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="meta">${title}</div>
           </div>
-          <div class="title">${title}</div>
         `;
 
-        grid.appendChild(div);
+        grid.appendChild(card);
         count++;
       }
     });
@@ -131,11 +159,12 @@ async function loadShorts() {
   } catch (err) {
     console.error(err);
     document.getElementById("grid").innerHTML =
-      "<div class='loading'>Failed to load content.</div>";
+      "<div class='loading'>Failed to load content (proxy error).</div>";
   }
 }
 
-loadShorts();
+loadVideos();
+
 </script>
 
 </body>
