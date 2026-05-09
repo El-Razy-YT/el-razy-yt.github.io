@@ -9,7 +9,7 @@
 
 <link rel="icon" type="image/png" href="../avatar.png">
 
-<meta name="version" content="1.0.0.13">
+<meta name="version" content="1.0.0.14">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -273,9 +273,24 @@ h1{
     font-size:1rem;
 }
 
-/* LIVE FEED */
+/* SECTION */
 
-.feed-container{
+.section-title{
+
+    margin:40px 0 25px;
+
+    font-family:'Orbitron',sans-serif;
+
+    letter-spacing:4px;
+
+    color:#00aaff;
+
+    font-size:1.4rem;
+}
+
+/* VIDEO */
+
+.video-card{
 
     width:100%;
 
@@ -283,7 +298,7 @@ h1{
 
     border:1px solid rgba(0,170,255,0.12);
 
-    border-radius:26px;
+    border-radius:24px;
 
     overflow:hidden;
 
@@ -292,22 +307,64 @@ h1{
     transition:0.4s ease;
 }
 
-.feed-container:hover{
+.video-card:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-8px);
 
     box-shadow:
     0 0 35px rgba(0,170,255,0.16);
 }
 
-.feed-container iframe{
+.video-card iframe{
 
     width:100%;
-    height:900px;
+    height:700px;
 
     border:none;
+}
 
-    background:#000;
+/* SHORTS */
+
+.shorts-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:28px;
+
+    margin-top:20px;
+}
+
+.short-card{
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(0,170,255,0.12);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.4s ease;
+}
+
+.short-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 0 35px rgba(0,170,255,0.16);
+}
+
+.short-card iframe{
+
+    width:100%;
+    height:620px;
+
+    border:none;
 }
 
 /* BUTTON */
@@ -318,7 +375,7 @@ h1{
     align-items:center;
     gap:12px;
 
-    margin-top:35px;
+    margin-top:40px;
 
     padding:14px 28px;
 
@@ -376,6 +433,22 @@ h1{
 
 /* MOBILE */
 
+@media(max-width:900px){
+
+    .shorts-grid{
+        grid-template-columns:1fr;
+    }
+
+    .video-card iframe{
+        height:400px;
+    }
+
+    .short-card iframe{
+        height:500px;
+    }
+
+}
+
 @media(max-width:768px){
 
     h1{
@@ -385,10 +458,6 @@ h1{
     .avatar{
         width:115px;
         height:115px;
-    }
-
-    .feed-container iframe{
-        height:700px;
     }
 
 }
@@ -431,21 +500,53 @@ h1{
             <h1>VIDEOS</h1>
 
             <div class="subtitle">
-                Live YouTube content feed from ElRazy_YT
+                Latest content from ElRazy_YT
             </div>
 
         </div>
 
     </div>
 
-    <!-- LIVE YOUTUBE CHANNEL FEED -->
+    <!-- LATEST VIDEO -->
 
-    <div class="feed-container">
+    <div class="section-title">
+        LATEST VIDEO
+    </div>
+
+    <div class="video-card">
 
         <iframe
-        src="https://www.youtube.com/embed?listType=user_uploads&list=ElRazy_YT"
+        src="https://www.youtube.com/embed/KLuTLF3x9sA"
         allowfullscreen>
         </iframe>
+
+    </div>
+
+    <!-- SHORTS -->
+
+    <div class="section-title">
+        LATEST SHORTS
+    </div>
+
+    <div class="shorts-grid">
+
+        <div class="short-card">
+
+            <iframe
+            src="https://www.youtube.com/embed/rf2h6i2Mndo"
+            allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <div class="short-card">
+
+            <iframe
+            src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+            allowfullscreen>
+            </iframe>
+
+        </div>
 
     </div>
 
@@ -461,7 +562,7 @@ h1{
 </div>
 
 <div class="version">
-    v1.0.0.13
+    v1.0.0.14
 </div>
 
 </body>
