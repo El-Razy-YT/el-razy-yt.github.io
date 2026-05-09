@@ -1,569 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AK22992 Videos</title>
-
-<link rel="icon" type="image/png" href="../avatar.png">
-
-<meta name="version" content="1.0.0.14">
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ElRazy | Shorts</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-
-    min-height:100vh;
-
-    overflow-x:hidden;
-
-    font-family:'Poppins',sans-serif;
-
-    background:#030712;
-
-    color:white;
-
-    position:relative;
-
-    padding:60px 20px;
-}
-
-/* BACKGROUND */
-
-.bg{
-
-    position:fixed;
-    inset:0;
-
-    background:
-    radial-gradient(circle at top left,
-    rgba(0,153,255,0.22),
-    transparent 30%),
-
-    radial-gradient(circle at bottom right,
-    rgba(0,102,255,0.18),
-    transparent 35%),
-
-    linear-gradient(
-    135deg,
-    #020816,
-    #071225,
-    #020816);
-
-    z-index:-10;
-}
-
-/* GRID */
-
-.grid{
-
-    position:fixed;
-    inset:0;
-
-    background-image:
-    linear-gradient(
-    rgba(0,170,255,0.04) 1px,
-    transparent 1px),
-
-    linear-gradient(
-    90deg,
-    rgba(0,170,255,0.04) 1px,
-    transparent 1px);
-
-    background-size:50px 50px;
-
-    z-index:-9;
-}
-
-/* FLOATING ICONS */
-
-.float-icon{
-
-    position:fixed;
-
-    color:rgba(0,170,255,0.08);
-
-    z-index:-2;
-
-    animation:float 8s ease-in-out infinite;
-}
-
-.icon1{
-    top:10%;
-    left:7%;
-    font-size:4rem;
-}
-
-.icon2{
-    top:20%;
-    right:10%;
-    font-size:5rem;
-    animation-duration:12s;
-}
-
-.icon3{
-    bottom:12%;
-    left:12%;
-    font-size:4.5rem;
-    animation-duration:10s;
-}
-
-@keyframes float{
-
-    0%{
-        transform:translateY(0px) rotate(0deg);
-    }
-
-    50%{
-        transform:translateY(-18px) rotate(8deg);
-    }
-
-    100%{
-        transform:translateY(0px) rotate(0deg);
-    }
-}
-
-/* HOME BUTTON */
-
-.home-btn{
-
-    position:fixed;
-
-    top:18px;
-    left:18px;
-
-    padding:10px 18px;
-
-    text-decoration:none;
-
-    color:white;
-
-    background:rgba(0,170,255,0.08);
-
-    border:1px solid rgba(0,170,255,0.18);
-
-    border-radius:12px;
-
-    font-family:'Orbitron',sans-serif;
-
-    font-size:0.75rem;
-
-    letter-spacing:2px;
-
-    backdrop-filter:blur(10px);
-
-    transition:0.35s ease;
-
-    z-index:50;
-}
-
-.home-btn:hover{
-
-    transform:translateY(-4px) scale(1.03);
-
-    background:rgba(0,170,255,0.14);
-
-    box-shadow:
-    0 0 20px rgba(0,170,255,0.25);
-}
-
-/* MAIN */
-
-.container{
-
-    width:100%;
-    max-width:1400px;
-
-    margin:auto;
-
-    text-align:center;
-
-    animation:fadeIn 1.2s ease;
-}
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0px);
-    }
-}
-
-/* HEADER */
-
-.header{
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:50px;
-}
-
-.avatar{
-
-    width:140px;
-    height:140px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    border:4px solid rgba(0,170,255,0.25);
-
-    box-shadow:
-    0 0 35px rgba(0,170,255,0.35),
-    0 0 80px rgba(0,170,255,0.15);
-
-    transition:0.4s ease;
-}
-
-.avatar:hover{
-
-    transform:scale(1.08) rotate(3deg);
-}
-
-h1{
-
-    font-family:'Orbitron',sans-serif;
-
-    font-size:3.8rem;
-
-    letter-spacing:7px;
-
-    color:#00aaff;
-
-    text-shadow:
-    0 0 10px rgba(0,170,255,0.9),
-    0 0 25px rgba(0,170,255,0.5);
-}
-
-.subtitle{
-
-    margin-top:8px;
-
-    color:rgba(255,255,255,0.75);
-
-    font-size:1rem;
-}
-
-/* SECTION */
-
-.section-title{
-
-    margin:40px 0 25px;
-
-    font-family:'Orbitron',sans-serif;
-
-    letter-spacing:4px;
-
-    color:#00aaff;
-
-    font-size:1.4rem;
-}
-
-/* VIDEO */
-
-.video-card{
-
-    width:100%;
-
-    background:rgba(255,255,255,0.03);
-
-    border:1px solid rgba(0,170,255,0.12);
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    backdrop-filter:blur(10px);
-
-    transition:0.4s ease;
-}
-
-.video-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:
-    0 0 35px rgba(0,170,255,0.16);
-}
-
-.video-card iframe{
-
-    width:100%;
-    height:700px;
-
-    border:none;
-}
-
-/* SHORTS */
-
-.shorts-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:28px;
-
-    margin-top:20px;
-}
-
-.short-card{
-
-    background:rgba(255,255,255,0.03);
-
-    border:1px solid rgba(0,170,255,0.12);
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    backdrop-filter:blur(10px);
-
-    transition:0.4s ease;
-}
-
-.short-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:
-    0 0 35px rgba(0,170,255,0.16);
-}
-
-.short-card iframe{
-
-    width:100%;
-    height:620px;
-
-    border:none;
-}
-
-/* BUTTON */
-
-.channel-btn{
-
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-
-    margin-top:40px;
-
-    padding:14px 28px;
-
-    text-decoration:none;
-
-    color:white;
-
-    background:rgba(0,170,255,0.08);
-
-    border:1px solid rgba(0,170,255,0.18);
-
-    border-radius:14px;
-
-    font-family:'Orbitron',sans-serif;
-
-    letter-spacing:2px;
-
-    transition:0.35s ease;
-}
-
-.channel-btn:hover{
-
-    transform:translateY(-6px) scale(1.03);
-
-    background:rgba(0,170,255,0.14);
-
-    box-shadow:
-    0 0 25px rgba(0,170,255,0.25);
-}
-
-.channel-btn i{
-
-    color:#00aaff;
-}
-
-/* VERSION */
-
-.version{
-
-    position:fixed;
-
-    left:16px;
-    bottom:12px;
-
-    color:rgba(0,170,255,0.72);
-
-    font-size:0.72rem;
-
-    font-family:'Orbitron',sans-serif;
-
-    letter-spacing:2px;
-
-    z-index:50;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-    .shorts-grid{
-        grid-template-columns:1fr;
-    }
-
-    .video-card iframe{
-        height:400px;
-    }
-
-    .short-card iframe{
-        height:500px;
-    }
-
-}
-
-@media(max-width:768px){
-
-    h1{
-        font-size:2.5rem;
-    }
-
-    .avatar{
-        width:115px;
-        height:115px;
-    }
-
-}
-
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0f1a;
+    color: white;
+  }
+
+  header {
+    padding: 18px;
+    text-align: center;
+    background: #11182a;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 20px;
+  }
+
+  /* Shorts-style vertical frame */
+  .short {
+    position: relative;
+    width: 100%;
+    padding-top: 177.77%; /* 9:16 ratio */
+    background: #111;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  }
+
+  .short iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .title {
+    font-size: 12px;
+    padding: 8px;
+    color: #bbb;
+    text-align: center;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+  }
+
+  .note {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    padding-bottom: 10px;
+  }
 </style>
-
 </head>
 
 <body>
 
-<a class="home-btn" href="/">
-    HOME
-</a>
+<header>🔥 Latest Shorts - ElRazy_YT</header>
+<div class="note">Auto-updating from YouTube channel</div>
 
-<div class="bg"></div>
-<div class="grid"></div>
-
-<div class="float-icon icon1">
-    <i class="fa-brands fa-youtube"></i>
+<div id="grid" class="grid">
+  <div class="loading">Loading Shorts...</div>
 </div>
 
-<div class="float-icon icon2">
-    <i class="fa-brands fa-discord"></i>
-</div>
+<script>
+const FEED_URL = "https://www.youtube.com/feeds/videos.xml?user=ElRazy_YT";
 
-<div class="float-icon icon3">
-    <i class="fa-brands fa-roblox"></i>
-</div>
+async function loadShorts() {
+  try {
+    const res = await fetch(FEED_URL);
+    const text = await res.text();
 
-<div class="container">
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, "text/xml");
 
-    <div class="header">
+    const entries = xml.querySelectorAll("entry");
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
 
-        <img src="../avatar.png"
-        alt="AK22992"
-        class="avatar">
+    let count = 0;
 
-        <div>
+    entries.forEach(entry => {
+      const title = entry.querySelector("title").textContent;
+      const videoId = entry.querySelector("yt\\:videoId").textContent;
 
-            <h1>VIDEOS</h1>
+      // OPTIONAL filter: show only Shorts if tagged
+      const isShort = title.toLowerCase().includes("#shorts");
 
-            <div class="subtitle">
-                Latest content from ElRazy_YT
-            </div>
+      // If no Shorts found yet, fallback to all videos
+      const allow = isShort || count < 10;
 
-        </div>
+      if (allow && count < 12) {
+        const div = document.createElement("div");
 
-    </div>
-
-    <!-- LATEST VIDEO -->
-
-    <div class="section-title">
-        LATEST VIDEO
-    </div>
-
-    <div class="video-card">
-
-        <iframe
-        src="https://www.youtube.com/embed/KLuTLF3x9sA"
-        allowfullscreen>
-        </iframe>
-
-    </div>
-
-    <!-- SHORTS -->
-
-    <div class="section-title">
-        LATEST SHORTS
-    </div>
-
-    <div class="shorts-grid">
-
-        <div class="short-card">
-
-            <iframe
-            src="https://www.youtube.com/embed/rf2h6i2Mndo"
-            allowfullscreen>
+        div.innerHTML = `
+          <div class="short">
+            <iframe 
+              src="https://www.youtube.com/embed/${videoId}" 
+              allowfullscreen>
             </iframe>
+          </div>
+          <div class="title">${title}</div>
+        `;
 
-        </div>
+        grid.appendChild(div);
+        count++;
+      }
+    });
 
-        <div class="short-card">
+    if (count === 0) {
+      grid.innerHTML = `<div class="loading">No videos found.</div>`;
+    }
 
-            <iframe
-            src="https://www.youtube.com/embed/aqz-KE-bpKQ"
-            allowfullscreen>
-            </iframe>
+  } catch (err) {
+    console.error(err);
+    document.getElementById("grid").innerHTML =
+      "<div class='loading'>Failed to load content.</div>";
+  }
+}
 
-        </div>
-
-    </div>
-
-    <a class="channel-btn"
-    href="https://www.youtube.com/@ElRazy_YT"
-    target="_blank">
-
-        <i class="fa-brands fa-youtube"></i>
-        VISIT CHANNEL
-
-    </a>
-
-</div>
-
-<div class="version">
-    v1.0.0.14
-</div>
+loadShorts();
+</script>
 
 </body>
 </html>
