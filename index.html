@@ -9,7 +9,7 @@
 
 <link rel="icon" type="image/png" href="avatar.png">
 
-<meta name="version" content="1.0.0.10">
+<meta name="version" content="1.0.0.12">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -310,13 +310,28 @@ h1:hover{
     font-weight:600;
 }
 
-/* BUTTON */
+/* BUTTONS */
+
+.button-group{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:38px;
+}
 
 .profile-btn{
 
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 
-    margin-top:38px;
+    gap:10px;
 
     padding:12px 26px;
 
@@ -347,6 +362,11 @@ h1:hover{
 
     box-shadow:
     0 0 28px rgba(0,170,255,0.28);
+}
+
+.profile-btn i{
+
+    color:#00aaff;
 }
 
 /* VERSION */
@@ -389,6 +409,10 @@ h1:hover{
     .description{
         font-size:0.96rem;
         line-height:1.9;
+    }
+
+    .button-group{
+        flex-direction:column;
     }
 
 }
@@ -452,17 +476,32 @@ h1:hover{
 
     </div>
 
-    <a class="profile-btn"
-    href="/profile/">
+    <!-- BUTTONS -->
 
-        OPEN PROFILE
+    <div class="button-group">
 
-    </a>
+        <a class="profile-btn"
+        href="/profile/">
+
+            <i class="fa-solid fa-user"></i>
+            OPEN PROFILE
+
+        </a>
+
+        <a class="profile-btn"
+        href="/videos/">
+
+            <i class="fa-brands fa-youtube"></i>
+            WATCH VIDEOS
+
+        </a>
+
+    </div>
 
 </div>
 
 <div class="version">
-    v1.0.0.10
+    v1.0.0.12
 </div>
 
 </body>
