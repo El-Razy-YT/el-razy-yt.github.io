@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AK22992</title>
+
+<!-- VERSION -->
+<meta name="version" content="1.0.0.4">
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- ICONS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:'Exo 2',sans-serif;
+
+    background:#030712;
+
+    color:white;
+
+    position:relative;
+}
+
+/* BACKGROUND */
+
+.bg{
+
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at top left,
+    rgba(0,153,255,0.25),
+    transparent 30%),
+
+    radial-gradient(circle at bottom right,
+    rgba(0,102,255,0.18),
+    transparent 35%),
+
+    linear-gradient(
+    135deg,
+    #020816,
+    #071225,
+    #020816);
+
+    z-index:-5;
+}
+
+/* GRID */
+
+.grid{
+
+    position:absolute;
+    inset:0;
+
+    background-image:
+    linear-gradient(
+    rgba(0,170,255,0.05) 1px,
+    transparent 1px),
+
+    linear-gradient(
+    90deg,
+    rgba(0,170,255,0.05) 1px,
+    transparent 1px);
+
+    background-size:50px 50px;
+
+    z-index:-4;
+}
+
+/* RINGS */
+
+.ring{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:1px solid rgba(0,170,255,0.18);
+
+    animation:spin 18s linear infinite;
+}
+
+.ring.one{
+    width:700px;
+    height:700px;
+}
+
+.ring.two{
+
+    width:950px;
+    height:950px;
+
+    animation-direction:reverse;
+    animation-duration:25s;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+/* PARTICLES */
+
+.particles span{
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:#00aaff;
+
+    box-shadow:0 0 12px #00aaff;
+
+    animation:float 12s linear infinite;
+}
+
+.particles span:nth-child(1){ left:10%; animation-duration:11s; }
+.particles span:nth-child(2){ left:24%; animation-duration:14s; }
+.particles span:nth-child(3){ left:38%; animation-duration:10s; }
+.particles span:nth-child(4){ left:52%; animation-duration:15s; }
+.particles span:nth-child(5){ left:66%; animation-duration:9s; }
+.particles span:nth-child(6){ left:80%; animation-duration:13s; }
+.particles span:nth-child(7){ left:92%; animation-duration:12s; }
+
+@keyframes float{
+
+    0%{
+        transform:translateY(110vh) scale(0);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-10vh) scale(1.4);
+        opacity:0;
+    }
+
+}
+
+/* MAIN */
+
+.container{
+
+    width:90%;
+    max-width:1300px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    text-align:center;
+
+    z-index:2;
+}
+
+/* PROFILE */
+
+.profile{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:28px;
+
+    margin-bottom:70px;
+
+    flex-wrap:wrap;
+}
+
+.pfp{
+    position:relative;
+}
+
+.pfp::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-8px;
+
+    border-radius:50%;
+
+    background:conic-gradient(
+        from 0deg,
+        #00aaff,
+        transparent,
+        #00aaff
+    );
+
+    animation:spin 5s linear infinite;
+
+    z-index:-1;
+}
+
+.profile img{
+
+    width:150px;
+    height:150px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid #071225;
+
+    box-shadow:
+    0 0 30px rgba(0,170,255,0.45),
+    0 0 70px rgba(0,170,255,0.18);
+}
+
+.profile h1{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:4rem;
+
+    letter-spacing:8px;
+
+    color:#00aaff;
+
+    text-shadow:
+    0 0 10px rgba(0,170,255,0.9),
+    0 0 25px rgba(0,170,255,0.55),
+    0 0 45px rgba(0,170,255,0.25);
+}
+
+/* BUTTONS */
+
+.links{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:28px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    width:240px;
+    height:78px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:14px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:rgba(0,170,255,0.06);
+
+    border:1px solid rgba(0,170,255,0.18);
+
+    clip-path:polygon(
+        12% 0%,
+        100% 0%,
+        100% 70%,
+        88% 100%,
+        0% 100%,
+        0% 30%
+    );
+
+    backdrop-filter:blur(10px);
+
+    transition:0.25s ease;
+}
+
+.btn:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 0 20px rgba(0,170,255,0.45),
+    0 0 45px rgba(0,170,255,0.18);
+}
+
+.btn i{
+
+    font-size:1.5rem;
+
+    color:#00aaff;
+}
+
+.btn span{
+
+    font-size:1rem;
+
+    letter-spacing:1px;
+}
+
+/* ROBLOX */
+
+.roblox-logo{
+
+    width:24px;
+    height:24px;
+
+    position:relative;
+
+    transform:rotate(18deg);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.roblox-logo .outer{
+
+    width:22px;
+    height:22px;
+
+    border:4px solid #00aaff;
+}
+
+.roblox-logo .inner{
+
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    background:#00aaff;
+}
+
+/* VERSION */
+
+.version-tag{
+
+    position:fixed;
+
+    left:16px;
+    bottom:12px;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:0.72rem;
+
+    letter-spacing:2px;
+
+    color:rgba(0,170,255,0.75);
+
+    user-select:none;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    body{
+        overflow:auto;
+        padding:40px 0;
+    }
+
+    .profile{
+        flex-direction:column;
+    }
+
+    .profile h1{
+        font-size:2.5rem;
+    }
+
+    .links{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+        max-width:320px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+
+<div class="ring one"></div>
+<div class="ring two"></div>
+
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<div class="container">
+
+    <!-- PROFILE -->
+    <div class="profile">
+
+        <div class="pfp">
+            <img src="avatar.png" alt="AK22992">
+        </div>
+
+        <h1>AK22992</h1>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="links">
+
+        <!-- DISCORD -->
+        <a class="btn"
+        href="https://discord.gg/XyJXDK6JYK"
+        target="_blank">
+
+            <i class="fa-brands fa-discord"></i>
+            <span>Cerritus Imperium</span>
+
+        </a>
+
+        <!-- YOUTUBE -->
+        <a class="btn"
+        href="https://www.youtube.com/@ElRazy_YT"
+        target="_blank">
+
+            <i class="fa-brands fa-youtube"></i>
+            <span>ElRazy_YT</span>
+
+        </a>
+
+        <!-- PINTEREST -->
+        <a class="btn"
+        href="https://in.pinterest.com/elrazy_yt/"
+        target="_blank">
+
+            <i class="fa-brands fa-pinterest"></i>
+            <span>ElRazy_YT</span>
+
+        </a>
+
+        <!-- SPOTIFY -->
+        <a class="btn"
+        href="https://open.spotify.com/user/31xxu5adkibxvp4npp4kv4naqvmi"
+        target="_blank">
+
+            <i class="fa-brands fa-spotify"></i>
+            <span>AK22992</span>
+
+        </a>
+
+        <!-- ROBLOX -->
+        <a class="btn"
+        href="https://www.roblox.com/users/4424058637/profile"
+        target="_blank">
+
+            <div class="roblox-logo">
+                <div class="outer"></div>
+                <div class="inner"></div>
+            </div>
+
+            <span>AK22992</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- VERSION -->
+<div class="version-tag">
+    v1.0.0.4
+</div>
+
+</body>
+</html>
