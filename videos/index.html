@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ElRazy_YT | Videos</title>
+<title>ElRazy_YT | Shorts</title>
 
 <link rel="icon" type="image/png" href="../avatar.png">
 
@@ -261,18 +261,18 @@ header{
     }
 }
 
-/* VIDEO GRID */
+/* SHORTS GRID */
 
-.videos-grid{
+.shorts-grid{
 
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
     gap:28px;
 
     animation:fadeIn 1.2s ease 0.2s both;
 }
 
-.video-card{
+.short-card{
 
     background:rgba(18,26,46,0.6);
 
@@ -293,7 +293,7 @@ header{
     cursor:pointer;
 }
 
-.video-card:hover{
+.short-card:hover{
 
     transform:translateY(-8px) scale(1.02);
 
@@ -304,20 +304,20 @@ header{
     0 0 30px rgba(0,170,255,0.15);
 }
 
-.video-wrapper{
+.short-wrapper{
 
     position:relative;
 
     width:100%;
 
-    padding-bottom:56.25%; /* 16:9 */
+    padding-bottom:177.77%; /* 9:16 */
 
     background:#0a0f20;
 
     overflow:hidden;
 }
 
-.video-wrapper iframe{
+.short-wrapper iframe{
 
     position:absolute;
 
@@ -330,12 +330,12 @@ header{
     border:none;
 }
 
-.video-meta{
+.short-meta{
 
     padding:18px;
 }
 
-.video-meta h3{
+.short-meta h3{
 
     font-size:0.95rem;
 
@@ -350,7 +350,7 @@ header{
     word-break:break-word;
 }
 
-.video-meta .duration{
+.short-meta .date{
 
     font-size:0.75rem;
 
@@ -445,20 +445,20 @@ header{
         letter-spacing:3px;
     }
 
-    .videos-grid{
-        grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    .shorts-grid{
+        grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
         gap:16px;
     }
 
-    .video-card{
+    .short-card{
         border-radius:12px;
     }
 
-    .video-meta{
+    .short-meta{
         padding:12px;
     }
 
-    .video-meta h3{
+    .short-meta h3{
         font-size:0.85rem;
     }
 
@@ -475,7 +475,7 @@ header{
 
 <header>
     <div class="header-title">
-        <h1>🔥 LATEST VIDEOS</h1>
+        <h1>🔥 LATEST SHORTS</h1>
         <div class="version">v1.0.0.2</div>
     </div>
     <a class="home-btn" href="https://el-razy-yt.github.io/">
@@ -488,13 +488,13 @@ header{
 
     <div class="section-header">
         <h2>ElRazy_YT</h2>
-        <p>Latest Uploads & Shorts from my Channel</p>
+        <p>Watch My Latest YouTube Shorts</p>
     </div>
 
-    <div id="grid" class="videos-grid">
+    <div id="grid" class="shorts-grid">
         <div class="loading-message">
             <div class="loading-spinner"></div>
-            <div>Loading your videos...</div>
+            <div>Loading your shorts...</div>
         </div>
     </div>
 
@@ -508,7 +508,7 @@ const FEED = encodeURIComponent(
 
 const URL = "https://api.allorigins.win/raw?url=" + FEED;
 
-async function loadVideos() {
+async function loadShorts() {
     try {
         const res = await fetch(URL);
         const text = await res.text();
@@ -530,7 +530,7 @@ async function loadVideos() {
 
             if (count < 12) {
                 const card = document.createElement("div");
-                card.className = "video-card";
+                card.className = "short-card";
 
                 const date = new Date(published).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -539,16 +539,16 @@ async function loadVideos() {
                 });
 
                 card.innerHTML = `
-                    <div class="video-wrapper">
+                    <div class="short-wrapper">
                         <iframe
-                            src="https://www.youtube.com/embed/${videoId}"
+                            src="https://www.youtube.com/embed/${videoId}?controls=1"
                             allowfullscreen
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                         </iframe>
                     </div>
-                    <div class="video-meta">
+                    <div class="short-meta">
                         <h3>${title}</h3>
-                        <div class="duration">${date}</div>
+                        <div class="date">${date}</div>
                     </div>
                 `;
 
@@ -558,7 +558,7 @@ async function loadVideos() {
         });
 
         if (count === 0) {
-            grid.innerHTML = `<div class="error-message">No videos found. Please check back later!</div>`;
+            grid.innerHTML = `<div class="error-message">No shorts found. Please check back later!</div>`;
         }
 
     } catch (err) {
@@ -566,12 +566,12 @@ async function loadVideos() {
         document.getElementById("grid").innerHTML =
             `<div class="error-message">
                 <i class="fa-solid fa-exclamation-circle"></i>
-                <div>Failed to load videos. Please try again later.</div>
+                <div>Failed to load shorts. Please try again later.</div>
             </div>`;
     }
 }
 
-loadVideos();
+loadShorts();
 
 </script>
 
