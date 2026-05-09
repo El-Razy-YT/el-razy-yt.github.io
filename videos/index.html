@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ElRazy_YT | Shorts</title>
+<title>ElRazy_YT | Videos</title>
 
 <link rel="icon" type="image/png" href="../avatar.png">
 
@@ -459,9 +459,9 @@ body{
     letter-spacing:1px;
 }
 
-/* SHORTS GRID */
+/* VIDEOS GRID */
 
-.shorts-grid{
+.videos-grid{
 
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
@@ -470,7 +470,7 @@ body{
     animation:fadeIn 1.2s ease 0.2s both;
 }
 
-.short-card{
+.video-card{
 
     background:rgba(18,26,46,0.4);
 
@@ -491,7 +491,7 @@ body{
     cursor:pointer;
 }
 
-.short-card:hover{
+.video-card:hover{
 
     transform:translateY(-6px) scale(1.02);
 
@@ -504,20 +504,20 @@ body{
     0 0 25px rgba(0,170,255,0.15);
 }
 
-.short-wrapper{
+.video-wrapper{
 
     position:relative;
 
     width:100%;
 
-    padding-bottom:177.77%; /* 9:16 */
+    padding-bottom:56.25%; /* 16:9 */
 
     background:#0a0f20;
 
     overflow:hidden;
 }
 
-.short-wrapper iframe{
+.video-wrapper img{
 
     position:absolute;
 
@@ -527,10 +527,30 @@ body{
     width:100%;
     height:100%;
 
-    border:none;
+    object-fit:cover;
+    transform:scale(1.01);
+    transition:transform 0.45s ease;
 }
 
-.short-meta{
+.video-card:hover .video-wrapper img{
+    transform:scale(1.06);
+}
+
+.video-badge{
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    padding:6px 10px;
+    border-radius:999px;
+    background:rgba(3,7,18,0.7);
+    border:1px solid rgba(0,170,255,0.16);
+    color:rgba(255,255,255,0.9);
+    font-size:0.72rem;
+    letter-spacing:1px;
+    backdrop-filter:blur(10px);
+}
+
+.video-meta{
 
     padding:12px;
 
@@ -539,7 +559,7 @@ body{
     border-top:1px solid rgba(0,170,255,0.08);
 }
 
-.short-meta h3{
+.video-meta h3{
 
     font-size:0.85rem;
 
@@ -552,6 +572,43 @@ body{
     word-break:break-word;
 
     text-align:left;
+}
+
+.video-meta .meta-row{
+    margin-top:8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.video-meta time{
+    font-size:0.78rem;
+    color:rgba(0,170,255,0.75);
+    letter-spacing:1px;
+}
+
+.watch-btn{
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:10px;
+    background:rgba(0,170,255,0.08);
+    border:1px solid rgba(0,170,255,0.16);
+    color:white;
+    font-family:'Orbitron',sans-serif;
+    font-size:0.65rem;
+    letter-spacing:1px;
+    transition:0.35s ease;
+}
+
+.watch-btn:hover{
+    background:rgba(0,170,255,0.14);
+    box-shadow:0 0 18px rgba(0,170,255,0.22);
+    transform:translateY(-2px);
 }
 
 /* LOADING */
@@ -625,7 +682,7 @@ body{
         font-size:2rem;
     }
 
-    .shorts-grid{
+    .videos-grid{
         grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
         gap:16px;
     }
@@ -690,7 +747,7 @@ body{
         </a>
         <a class="nav-link active" href="/videos/" onclick="closeSidebar()">
             <i class="fa-brands fa-youtube"></i>
-            SHORTS
+            VIDEOS
         </a>
     </div>
 </div>
@@ -700,14 +757,14 @@ body{
 <div class="container">
 
     <div class="title-section">
-        <h1>LATEST SHORTS</h1>
-        <p>Watch My Latest YouTube Shorts</p>
+        <h1>LATEST VIDEOS</h1>
+        <p>Watch my latest uploads from YouTube</p>
     </div>
 
-    <div id="grid" class="shorts-grid">
+    <div id="grid" class="videos-grid">
         <div class="loading">
             <div class="loading-spinner"></div>
-            <div>Loading shorts...</div>
+            <div>Loading videos...</div>
         </div>
     </div>
 
@@ -738,15 +795,32 @@ document.addEventListener('click', function(event) {
     }
 });
 
-const FEED = encodeURIComponent(
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UCU7ND2A5LJrm0g4tAMTXYAQ"
-);
+const CHANNEL_ID = "UCU7ND2A5LJrm0g4tAMTXYAQ"; // ElRazy_YT
+const MAX_VIDEOS = 12;
+const FEED = encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`);
 
 const URL = "https://api.allorigins.win/raw?url=" + FEED;
 
-async function loadShorts() {
+function formatDate(iso) {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+}
+
+function getText(node, selector) {
+    const el = node.querySelector(selector);
+    return el ? el.textContent : "";
+}
+
+function getAttr(node, selector, attr) {
+    const el = node.querySelector(selector);
+    return el ? el.getAttribute(attr) : "";
+}
+
+async function loadVideos() {
     try {
         const res = await fetch(URL);
+        if (!res.ok) throw new Error(`Feed request failed: ${res.status}`);
         const text = await res.text();
 
         const parser = new DOMParser();
@@ -760,46 +834,67 @@ async function loadShorts() {
         let count = 0;
 
         entries.forEach(entry => {
-            const title = entry.querySelector("title").textContent;
-            const videoId = entry.querySelector("yt\\:videoId").textContent;
+            if (count >= MAX_VIDEOS) return;
 
-            if (count < 12) {
-                const card = document.createElement("div");
-                card.className = "short-card";
+            const title = getText(entry, "title");
+            const videoId = getText(entry, "yt\\:videoId");
+            const published = getText(entry, "published");
+            const watchUrl = getAttr(entry, "link[rel='alternate']", "href") || `https://www.youtube.com/watch?v=${videoId}`;
 
-                card.innerHTML = `
-                    <div class="short-wrapper">
-                        <iframe
-                            src="https://www.youtube.com/embed/${videoId}?controls=0"
-                            allowfullscreen
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                        </iframe>
+            const thumb =
+                getAttr(entry, "media\\:group media\\:thumbnail", "url") ||
+                `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+            const card = document.createElement("div");
+            card.className = "video-card";
+            card.setAttribute("role", "link");
+            card.setAttribute("tabindex", "0");
+            card.setAttribute("aria-label", `Watch: ${title}`);
+
+            card.innerHTML = `
+                <div class="video-wrapper">
+                    <img src="${thumb}" alt="${title.replace(/"/g, "&quot;")}" loading="lazy" />
+                    <div class="video-badge"><i class="fa-brands fa-youtube"></i> YouTube</div>
+                </div>
+                <div class="video-meta">
+                    <h3>${title}</h3>
+                    <div class="meta-row">
+                        <time datetime="${published}">${formatDate(published)}</time>
+                        <a class="watch-btn" href="${watchUrl}" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-play"></i> WATCH
+                        </a>
                     </div>
-                    <div class="short-meta">
-                        <h3>${title}</h3>
-                    </div>
-                `;
+                </div>
+            `;
 
-                grid.appendChild(card);
-                count++;
-            }
+            const open = () => window.open(watchUrl, "_blank", "noopener,noreferrer");
+            card.addEventListener("click", (e) => {
+                if (e.target && e.target.closest && e.target.closest("a")) return;
+                open();
+            });
+            card.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") open();
+            });
+
+            grid.appendChild(card);
+            count++;
         });
 
         if (count === 0) {
-            grid.innerHTML = `<div class="loading">No shorts found.</div>`;
+            grid.innerHTML = `<div class="loading">No videos found.</div>`;
         }
 
     } catch (err) {
         console.error(err);
         document.getElementById("grid").innerHTML =
-            `<div class="loading">Failed to load shorts. Please try again later.</div>`;
+            `<div class="loading">Failed to load videos. Please try again later.</div>`;
     }
 }
 
-loadShorts();
+loadVideos();
 
 // Auto-refresh every 30 minutes
-setInterval(loadShorts, 30 * 60 * 1000);
+setInterval(loadVideos, 30 * 60 * 1000);
 
 </script>
 
