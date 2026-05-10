@@ -2,127 +2,494 @@
 <html lang="en">
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>AK22992</title>
 
+<!-- TAB ICON -->
 <link rel="icon" type="image/png" href="avatar.png">
 
-<meta name="version" content="1.0.0.12">
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-<link rel="stylesheet" href="assets/site.css">
+body{
+    min-height:100vh;
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #140000,
+        #330000,
+        #700000,
+        #ff1f1f
+    );
+
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+
+    color:white;
+}
+
+/* Animated Background */
+
+@keyframes bg{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* Glow Effects */
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.4;
+}
+
+.glow1{
+    width:350px;
+    height:350px;
+    background:red;
+
+    top:-120px;
+    left:-120px;
+}
+
+.glow2{
+    width:300px;
+    height:300px;
+    background:#ff5555;
+
+    bottom:-120px;
+    right:-120px;
+}
+
+/* Floating Background Icons */
+
+.floating-icons i{
+    position:absolute;
+    color:rgba(255,255,255,0.05);
+
+    animation:float 8s ease-in-out infinite;
+}
+
+.floating-icons i:nth-child(1){
+    font-size:100px;
+    top:10%;
+    left:8%;
+}
+
+.floating-icons i:nth-child(2){
+    font-size:120px;
+    top:70%;
+    left:12%;
+}
+
+.floating-icons i:nth-child(3){
+    font-size:90px;
+    top:20%;
+    right:10%;
+}
+
+.floating-icons i:nth-child(4){
+    font-size:100px;
+    bottom:15%;
+    right:12%;
+}
+
+.floating-icons i:nth-child(5){
+    font-size:120px;
+    top:45%;
+    left:45%;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+/* Navbar */
+
+nav{
+    width:100%;
+    padding:20px 60px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(10px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    position:relative;
+    z-index:10;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#ffb3b3;
+}
+
+/* Pages */
+
+.page{
+    width:100%;
+    height:100vh;
+
+    position:absolute;
+    top:0;
+    left:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    transition:0.5s;
+
+    padding:20px;
+}
+
+.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(30px);
+}
+
+.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0px);
+}
+
+/* Home Page */
+
+.hero{
+    text-align:center;
+}
+
+.avatar{
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+    object-fit:cover;
+
+    border:5px solid rgba(255,255,255,0.12);
+
+    box-shadow:0 0 45px rgba(255,0,0,0.5);
+
+    margin-bottom:25px;
+
+    animation:avatarFloat 4s ease-in-out infinite;
+}
+
+@keyframes avatarFloat{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.hero h1{
+    font-size:75px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:750px;
+
+    font-size:20px;
+    line-height:1.7;
+
+    opacity:0.9;
+}
+
+/* Socials Page */
+
+.social-title{
+    font-size:60px;
+    margin-bottom:40px;
+}
+
+.socials{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    width:190px;
+    height:190px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+    color:white;
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+
+    background:rgba(255,255,255,0.15);
+
+    box-shadow:0 0 25px rgba(255,0,0,0.4);
+}
+
+.card i{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.card span{
+    font-size:22px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    nav{
+        padding:20px;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .avatar{
+        width:170px;
+        height:170px;
+    }
+
+    .social-title{
+        font-size:40px;
+    }
+
+    .card{
+        width:145px;
+        height:145px;
+    }
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="bg"></div>
-<div class="grid"></div>
+<!-- Glow -->
 
-<!-- FLOATING ICONS -->
-<div class="float-icon icon1"><i class="fa-brands fa-discord"></i></div>
-<div class="float-icon icon2"><i class="fa-brands fa-youtube"></i></div>
-<div class="float-icon icon3"><i class="fa-brands fa-spotify"></i></div>
-<div class="float-icon icon4"><i class="fa-brands fa-pinterest"></i></div>
-<div class="float-icon icon5"><i class="fa-brands fa-roblox"></i></div>
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
 
-<div class="backdrop" id="backdrop"></div>
+<!-- Floating Icons -->
 
-<!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar" aria-label="Site navigation">
-    <div class="side-header">
-        <div class="side-user">
-            <img class="side-avatar" src="avatar.png" alt="AK22992 avatar">
-            <div class="side-name">
-                <b>AK22992</b>
-                <span id="currentVersionSlot">v1.0.0.12</span>
-            </div>
-        </div>
-        <button class="close-btn" id="closeBtn" aria-label="Close menu">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-    </div>
+<div class="floating-icons">
 
-    <div class="side-divider"></div>
+<i class="fab fa-discord"></i>
+<i class="fab fa-youtube"></i>
+<i class="fas fa-gamepad"></i>
+<i class="fab fa-pinterest"></i>
+<i class="fab fa-spotify"></i>
 
-    <nav class="sidebar-nav">
-        <a class="nav-link active" href="./">
-            <i class="fa-solid fa-house"></i>
-            HOME
-        </a>
-        <a class="nav-link" href="profile/">
-            <i class="fa-solid fa-user"></i>
-            PROFILE
-        </a>
-        <a class="nav-link" href="videos/">
-            <i class="fa-brands fa-youtube"></i>
-            SHORTS
-        </a>
-    </nav>
-
-    <div class="side-divider"></div>
-    <div class="side-section-title">Versions</div>
-    <div class="version-buttons">
-        <a class="vbtn" href="./"><b>HOME</b><code>v1.0.0.12</code></a>
-        <a class="vbtn" href="profile/"><b>PROFILE</b><code>v1.0.0.8</code></a>
-        <a class="vbtn" href="videos/"><b>SHORTS</b><code>v1.0.0.10</code></a>
-    </div>
-
-    <div class="side-footer">
-        <div class="side-foot-note">Tip: Press ESC to close.</div>
-    </div>
-</aside>
-
-<!-- MAIN -->
-<div class="app">
-    <header class="topbar">
-        <div class="topbar-left">
-            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="crumb">
-                <small>Home</small>
-                <h1>AK22992</h1>
-            </div>
-        </div>
-    </header>
-
-    <main class="card">
-        <div class="card-inner">
-            <section class="hero">
-                <div class="hero-left">
-                    <img src="avatar.png" alt="AK22992" class="hero-avatar">
-                    <div class="hero-title">
-                        <h2>AK22992</h2>
-                        <p>Creator • Moderator • Tech Enthusiast</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="content" aria-label="About">
-                <p>
-                    <strong>Hey!</strong> I'm a content creator, Discord moderator, and tech enthusiast who loves gaming and building online communities. Most of my gaming time goes into <strong>Blox Fruits</strong> and other Roblox games.
-                    <br><br>
-                    I'm also interested in <strong>programming</strong>, Discord server management, bot systems, and creating cool projects. From moderating communities to customizing servers and working on automation, I enjoy the technical side of content creation.
-                    <br><br>
-                    When I'm not gaming or creating content, you'll probably find me experimenting with tech, working on Discord-related projects, or planning my next video. I enjoy meeting new people, helping out in communities, and collaborating with other creators!
-                </p>
-            </section>
-        </div>
-    </main>
 </div>
 
-<div class="version">
-    v1.0.0.12
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">AK22992</div>
+
+<ul>
+
+<li>
+<a href="#"
+onclick="showPage('home')">
+Portfolio
+</a>
+</li>
+
+<li>
+<a href="#"
+onclick="showPage('socials')">
+Socials
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+<!-- HOME PAGE -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<img src="avatar.png" class="avatar">
+
+<h1>AK22992</h1>
+
+<p>
+Hey! I'm a content creator, Discord moderator,
+gaming enthusiast and tech lover who enjoys
+Roblox, modern UI design and creating cool
+gaming themed projects and websites.
+</p>
+
 </div>
 
-<script src="assets/site.js"></script>
+</section>
+
+<!-- SOCIAL PAGE -->
+
+<section id="socials" class="page hidden">
+
+<h1 class="social-title">MY SOCIALS</h1>
+
+<div class="socials">
+
+<a class="card"
+href="https://discord.com/invite/XyJXDK6JYK"
+target="_blank">
+
+<i class="fab fa-discord"></i>
+<span>Discord</span>
+
+</a>
+
+<a class="card"
+href="https://www.youtube.com/@ElRazy_YT"
+target="_blank">
+
+<i class="fab fa-youtube"></i>
+<span>YouTube</span>
+
+</a>
+
+<a class="card"
+href="https://www.roblox.com/users/4424058637/profile"
+target="_blank">
+
+<i class="fas fa-gamepad"></i>
+<span>Roblox</span>
+
+</a>
+
+<a class="card"
+href="https://in.pinterest.com/elrazy_yt/"
+target="_blank">
+
+<i class="fab fa-pinterest"></i>
+<span>Pinterest</span>
+
+</a>
+
+<a class="card"
+href="https://open.spotify.com/user/31xxu5adkibxvp4npp4kv4naqvmi"
+target="_blank">
+
+<i class="fab fa-spotify"></i>
+<span>Spotify</span>
+
+</a>
+
+</div>
+
+</section>
+
+<script>
+
+function showPage(pageId){
+
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(page => {
+
+        page.classList.remove("active");
+        page.classList.add("hidden");
+
+    });
+
+    document.getElementById(pageId)
+    .classList.remove("hidden");
+
+    document.getElementById(pageId)
+    .classList.add("active");
+}
+
+</script>
 
 </body>
 </html>
-
